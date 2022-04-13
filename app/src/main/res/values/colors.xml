@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="greenmode">#25AE2B</color>
+    <color name="yellowmode">#B6A97F</color>
+    <color name="bluemode">#2196F3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="graybackground">#24A0CAA1</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="drawableblue">#15306A</color>
+</resources>

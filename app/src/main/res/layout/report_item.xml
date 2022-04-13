@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/report_itemid"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/yellowmode"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="9dp"
+    app:contentPadding="4dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_layout"
+        android:layout_width="392dp"
+        android:layout_height="245dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="350dp"
+            android:layout_height="137dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/description_tv"
+            android:layout_width="338dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="8dp"
+            android:paddingStart="10dp"
+            android:text="description for the incident"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="78dp"
+            android:layout_height="30dp"
+            android:paddingStart="10dp"
+            android:text="location"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.627"
+            app:layout_constraintStart_toEndOf="@+id/commentreprts"
+            app:layout_constraintTop_toBottomOf="@+id/description_tv"
+            app:layout_constraintVertical_bias="0.36" />
+
+        <ImageView
+            android:id="@+id/sharereport"
+            android:layout_width="82dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="40dp"
+            android:src="@drawable/ic_share_foreground"
+            app:layout_constraintBottom_toBottomOf="@+id/commentreprts"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/commentreprts"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/commentreprts"
+            android:layout_width="82dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="32dp"
+            android:src="@drawable/ic_comment_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/sharereport"
+            app:layout_constraintTop_toBottomOf="@+id/description_tv"
+            app:layout_constraintVertical_bias="0.125" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

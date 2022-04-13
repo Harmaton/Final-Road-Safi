@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/graybackground"
+    android:padding="24dp"
+    tools:context=".activities.SignUpActivity">
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/txtpassword2"
+        android:layout_width="292dp"
+        android:layout_height="70dp"
+        android:background="@drawable/input_background"
+        android:hint="Password"
+        android:paddingStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailtext" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView"
+        android:layout_width="158dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_baseline_how_to_reg_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/emailtext"
+        android:layout_width="294dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/input_background"
+        android:drawablePadding="5dp"
+        android:hint="Email"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/txtpassword"
+        android:layout_width="294dp"
+        android:layout_height="65dp"
+        android:background="@drawable/input_background"
+        android:hint=" Re-Enter password"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtpassword2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signupbtn"
+        android:layout_width="283dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/input_background"
+        android:drawableEnd="@drawable/ic_baseline_double_arrow_24"
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtpassword"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
