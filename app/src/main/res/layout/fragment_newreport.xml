@@ -11,7 +11,7 @@
         android:id="@+id/new_reportframe"
         android:layout_width="408dp"
         android:layout_height="134dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="0dp"
         android:background="@color/greenmode"
         android:padding="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,19 +76,23 @@
         app:layout_constraintVertical_bias="0.347">
 
         <Button
-            android:id="@+id/capture"
+            android:id="@+id/btn_capture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/input_background"
-            android:text="Take Photo" />
+            android:backgroundTint="@color/greenmode"
+            android:text="Photo"
+            android:drawableRight="@drawable/ic_baseline_camera_alt_24"
+            />
 
         <Button
-            android:id="@+id/gallery"
+            android:id="@+id/btn_gallery"
             android:layout_width="match_parent"
+            android:backgroundTint="@color/greenmode"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/input_background"
+            android:drawableEnd="@drawable/ic_gallery"
+
             android:text="Gallery" />
 
 
@@ -99,6 +103,7 @@
         android:layout_width="185dp"
         android:layout_height="122dp"
         android:layout_marginTop="28dp"
+        android:cropToPadding="true"
         android:layout_marginEnd="16dp"
         android:background="@drawable/ic_post_foreground"
         android:backgroundTint="@color/greenmode"
@@ -146,10 +151,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.911"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/input_background"
         app:layout_constraintTop_toBottomOf="@+id/et_location"
         app:layout_constraintVertical_bias="0.058"
-        android:backgroundTint="@color/bluemode"
+        android:backgroundTint="@color/greenmode"
         />
 
 
