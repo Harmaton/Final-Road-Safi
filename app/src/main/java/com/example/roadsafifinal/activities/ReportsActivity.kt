@@ -68,6 +68,7 @@ class ReportsActivity : AppCompatActivity() {
         }
     }
 
+
     public fun logOut(){
         firebaseAuth.signOut()
 

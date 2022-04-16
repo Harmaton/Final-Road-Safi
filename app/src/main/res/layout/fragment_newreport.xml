@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="413dp"
+            android:layout_width="419dp"
             android:layout_height="match_parent"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center"
@@ -28,6 +28,7 @@
             android:text="Create New Report "
             android:textFontWeight="400"
             android:textSize="30dp" />
+
     </FrameLayout>
 
 
@@ -55,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Report any type of road misconducts here"
+            android:text="Report Any Type of Road Misconduct Here"
             android:textColor="@color/black"
             android:textSize="20dp"
 
@@ -63,7 +64,10 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="135dp"
         android:layout_height="137dp"
         android:layout_marginTop="20dp"
@@ -81,16 +85,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/greenmode"
-            android:text="Photo"
             android:drawableRight="@drawable/ic_baseline_camera_alt_24"
-            />
+            android:text="Photo" />
 
         <Button
             android:id="@+id/btn_gallery"
             android:layout_width="match_parent"
-            android:backgroundTint="@color/greenmode"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/greenmode"
             android:drawableEnd="@drawable/ic_gallery"
 
             android:text="Gallery" />
@@ -98,26 +101,27 @@
 
     </LinearLayout>
 
+
     <ImageView
         android:id="@+id/img_report"
-        android:layout_width="185dp"
-        android:layout_height="122dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:cropToPadding="true"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/ic_post_foreground"
+        android:background="@drawable/ic_baseline_camera_24"
         android:backgroundTint="@color/greenmode"
         android:contextClickable="true"
+        android:cropToPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
 
     <EditText
         android:id="@+id/et_description"
-        android:layout_width="354dp"
+        android:layout_width="375dp"
         android:layout_height="59dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="44dp"
-        android:hint="Description goes here ..."
+        android:hint="Describe Incident ..."
         android:padding="10dp"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -131,9 +135,11 @@
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:hint="location for the incident?"
+        android:hint="incident location"
         android:padding="10dp"
         android:textSize="20dp"
+        android:drawableStart="@drawable/ic_baseline_add_location_alt_24"
+        android:drawablePadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -143,18 +149,27 @@
 
     <Button
         android:id="@+id/btn_report"
-        android:layout_width="139dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="169dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/greenmode"
         android:text="Report"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintHorizontal_bias="0.838"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_location"
-        app:layout_constraintVertical_bias="0.058"
-        android:backgroundTint="@color/greenmode"
-        />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ProgressBar
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_report"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_location" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
