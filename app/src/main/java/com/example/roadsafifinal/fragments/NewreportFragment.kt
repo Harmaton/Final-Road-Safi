@@ -17,7 +17,9 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.roadsafifinal.R
+import com.example.roadsafifinal.data.fbmodels.Reportfb
 import com.example.roadsafifinal.databinding.FragmentNewreportBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -27,32 +29,30 @@ import java.util.jar.Manifest
 
 class NewreportFragment : Fragment() {
 
-    lateinit var imageUri: Uri
-
-
     private val CAMERA_REQUEST_CODE=2
     private val PICK_IMAGE_REQUEST = 1
-    private val description=""
-    private val location=""
+    lateinit var imageUri: Uri
 
+    //Firebase
+    private lateinit var databaseReference: DatabaseReference
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val bind = FragmentNewreportBinding.inflate(layoutInflater)
 
-        var mUploadTask: StorageTask<*>? = null
-      var mStorageRef = FirebaseStorage.getInstance().getReference("teachers_uploads")
-      var  databaseRef = FirebaseDatabase.getInstance().getReference("teachers_uploads")
 
-        val requestCamera=registerForActivityResult(ActivityResultContracts.RequestPermission(), {
+       val auth=FirebaseAuth.getInstance()
+        databaseReference=FirebaseDatabase.getInstance().getReference("Reports")
+
+
+        val requestCamera=registerForActivityResult(ActivityResultContracts.RequestPermission()) {
             if (it) {
-                Toast.makeText( activity,"Access Granted", Toast.LENGTH_LONG).show()
-            }else
-            {
-                Toast.makeText( activity,"Access Denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Access Granted", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(activity, "Access Denied", Toast.LENGTH_LONG).show()
             }
-        })
+        }
 
         bind.btnCapture.setOnClickListener {
             requestCamera.launch(android.Manifest.permission.CAMERA)
@@ -68,9 +68,14 @@ class NewreportFragment : Fragment() {
 
         }
         bind.btnReport.setOnClickListener {
-            validateInput()
-            saveReport()
-            clearFields()
+            //val descrption = bind.etDescription.text.toString()
+          // val location=bind.etLocation.text.toString()
+
+
+            //val Reportfb=Reportfb(descrption,location)
+            //databaseReference.child('uid')
+
+
         }
 
         return bind.root
@@ -122,6 +127,7 @@ class NewreportFragment : Fragment() {
 
     private fun saveReport() {
        // ("save report to Room Database")
+
 
 
     }

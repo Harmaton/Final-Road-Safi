@@ -45,19 +45,19 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/materialTextView"
-        android:layout_width="382dp"
-        android:layout_height="79dp"
+        android:layout_width="384dp"
+        android:layout_height="52dp"
         android:layout_marginTop="28dp"
+        android:paddingStart="45dp"
         android:text="Profile Information"
         android:textSize="30dp"
-        android:paddingStart="45dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageFilterView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/imageFilterView"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="206dp"
         android:layout_height="124dp"
         android:layout_marginTop="36dp"
@@ -66,6 +66,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <com.google.android.material.textfield.TextInputEditText
         android:paddingStart="10dp"
@@ -80,12 +82,14 @@
         app:layout_constraintTop_toBottomOf="@+id/materialTextView"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/contButton"
         android:layout_width="224dp"
         android:layout_height="60dp"
         android:background="@drawable/input_background"
         android:text="Continue"
+        android:textStyle="bold"
+        android:backgroundTint="@color/greenmode"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -93,22 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText3"
         app:layout_constraintVertical_bias="0.252" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btnskip"
-        android:layout_width="114dp"
-        android:layout_height="37dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="16dp"
-        android:drawableEnd="@drawable/ic_baseline_double_arrow_24"
-        android:text="SKIP"
-        android:textSize="15dp"
-        android:padding="10dp"
-        android:background="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contButton"
-        app:layout_constraintVertical_bias="0.545" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

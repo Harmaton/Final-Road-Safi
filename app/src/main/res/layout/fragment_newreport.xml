@@ -7,169 +7,128 @@
     tools:context=".fragments.NewreportFragment">
 
 
-    <FrameLayout
-        android:id="@+id/new_reportframe"
-        android:layout_width="408dp"
-        android:layout_height="134dp"
-        android:layout_marginTop="0dp"
-        android:background="@color/greenmode"
-        android:padding="0dp"
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
+        android:layout_width="331dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="serif"
+        android:text="Create New Report"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="419dp"
-            android:layout_height="match_parent"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="Create New Report "
-            android:textFontWeight="400"
-            android:textSize="30dp" />
-
-    </FrameLayout>
-
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linearLayoutCompat"
-        android:layout_width="403dp"
-        android:layout_height="72dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_reportframe"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_goneMarginTop="10dp">
-
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_post_foreground" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Report Any Type of Road Misconduct Here"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-
-            />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="135dp"
-        android:layout_height="137dp"
-        android:layout_marginTop="20dp"
+        android:id="@+id/input_description"
+        android:layout_width="392dp"
+        android:layout_height="378dp"
+        android:layout_marginTop="12dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/et_description"
-        app:layout_constraintEnd_toStartOf="@+id/img_report"
-        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
-        app:layout_constraintVertical_bias="0.347">
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-        <Button
-            android:id="@+id/btn_capture"
+        <TextView
+            style="@style/TextAppearance.AppCompat.Display1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/greenmode"
-            android:drawableRight="@drawable/ic_baseline_camera_alt_24"
-            android:text="Photo" />
+            android:layout_height="70dp"
+            android:drawableEnd="@drawable/ic_post_foreground"
+            android:paddingStart="10dp"
+            android:textColor="@color/greenmode"
+            android:text="Report any type of road misconduct here"
+            android:textSize="25dp" />
 
-        <Button
-            android:id="@+id/btn_gallery"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/greenmode"
-            android:drawableEnd="@drawable/ic_gallery"
+            android:layout_height="38dp"
+            android:layout_marginTop="5dp"
+            android:paddingStart="10dp"
+            android:text="Input a photo of incident view below ;"
+            android:textSize="18dp"
+            android:textStyle="italic" />
 
-            android:text="Gallery" />
+        <ImageView
+            android:id="@+id/img_report"
+            android:layout_width="380dp"
+            android:layout_height="194dp"
+            android:background="@mipmap/photo"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/btn_Capture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_camera_alt_24"
+                android:text="Camera"
+                android:backgroundTint="@color/greenmode"/>
+
+            <Button
+                android:id="@+id/btn_Gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_gallery"
+                android:backgroundTint="@color/bluemode"
+                android:text="Pick " />
+        </LinearLayout>
 
 
     </LinearLayout>
 
-
-    <ImageView
-        android:id="@+id/img_report"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/ic_baseline_camera_24"
-        android:backgroundTint="@color/greenmode"
-        android:contextClickable="true"
-        android:cropToPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
-
-    <EditText
-        android:id="@+id/et_description"
-        android:layout_width="375dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="44dp"
-        android:hint="Describe Incident ..."
+    <LinearLayout
+        android:id="@+id/reportinputlayout"
+        android:layout_width="403dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical"
         android:padding="10dp"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_report" />
-
-    <EditText
-        android:id="@+id/et_location"
-        android:layout_width="377dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:hint="incident location"
-        android:padding="10dp"
-        android:textSize="20dp"
-        android:drawableStart="@drawable/ic_baseline_add_location_alt_24"
-        android:drawablePadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_description"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintTop_toBottomOf="@+id/input_description"
+        app:layout_constraintVertical_bias="0.0">
 
-    <Button
-        android:id="@+id/btn_report"
-        android:layout_width="169dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/greenmode"
-        android:text="Report"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.838"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_location"
-        app:layout_constraintVertical_bias="0.0" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/description_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Incident description ..." />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/location_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Incident location ..." />
+
+        <Button
+            android:id="@+id/btn_Report"
+            android:layout_width="127dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:backgroundTint="@color/greenmode"
+            android:text="Submit" />
+
+
+    </LinearLayout>
 
     <ProgressBar
+        android:id="@+id/progress_report"
+        android:layout_width="17dp"
+        android:layout_height="10dp"
+        android:layout_marginEnd="400dp"
         android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_report"
-        app:layout_constraintHorizontal_bias="0.535"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_location" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/reportinputlayout"
+        app:layout_constraintEnd_toStartOf="parent"
+        tools:layout_editor_absoluteY="29dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
