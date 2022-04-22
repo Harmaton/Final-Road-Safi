@@ -6,16 +6,120 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ProfileFragment">
 
-    <TextView
-        android:layout_width="204dp"
-        android:layout_height="383dp"
-        android:text="Profile ui goes here"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="331dp"
+        android:layout_height="146dp"
+
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/bluemode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54"
-        tools:layout_editor_absoluteX="103dp" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/pic_profile"
+            android:layout_width="131dp"
+            android:layout_height="121dp"
+            android:src="@drawable/ic_baseline_person_pin_24"
+            app:civ_border_color="#FF000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.892" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/fullname_tv"
+        android:layout_width="300dp"
+       android:drawablePadding="15dp"
+        android:drawableLeft="@drawable/ic_baseline_person_pin_24"
+        android:layout_height="61dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="cursive"
+        android:paddingStart="15dp"
+        android:text="full name "
+        android:textColor="@color/bluemode"
+        android:textSize="46dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/sacc0_tv"
+        android:layout_width="306dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/ic_baseline_child_care_24"
+        android:drawablePadding="15dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:paddingStart="15dp"
+        android:text="sacco"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fullname_tv" />
+
+    <TextView
+        android:id="@+id/carowned_tv"
+        android:layout_width="292dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif"
+        android:drawableStart="@drawable/ic_baseline_directions_car_24"
+        android:drawablePadding="15dp"
+        android:paddingStart="15dp"
+        android:text="car owned"
+        android:textSize="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sacc0_tv" />
+
+
+    <TextView
+        android:id="@+id/phone_tv"
+        android:layout_width="289dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="96dp"
+        android:drawableStart="@drawable/ic_baseline_local_phone_24"
+        android:drawablePadding="15dp"
+        android:fontFamily="sans-serif-medium"
+        android:paddingStart="15dp"
+        android:text="Phone number"
+        android:textSize="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sacc0_tv" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="86dp"
+        android:layout_height="48dp"
+        android:background="@drawable/input_background"
+        android:backgroundTint="@color/blue"
+        android:text="log out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_tv"
+        app:layout_constraintVertical_bias="0.373" />
+
+    <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+        android:id="@+id/googleProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

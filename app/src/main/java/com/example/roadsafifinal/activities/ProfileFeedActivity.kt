@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.widget.Toast
 import com.example.roadsafifinal.data.fbmodels.Userfb
 import com.example.roadsafifinal.databinding.ActivityProfileFeedBinding
+import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.database.DatabaseReference
 
@@ -20,6 +21,8 @@ class ProfileFeedActivity : AppCompatActivity() {
     //activity binding
     private lateinit var binding: ActivityProfileFeedBinding
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
+    private lateinit var uid: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +30,10 @@ class ProfileFeedActivity : AppCompatActivity() {
 
         //val database= Firebase.database
 
+
+        //addedd
+        auth = FirebaseAuth.getInstance()
+        uid = auth.currentUser?.uid.toString()
 
         database = Firebase.database.reference
 
@@ -62,10 +69,20 @@ class ProfileFeedActivity : AppCompatActivity() {
             return
         }
 
+        if (TextUtils.isEmpty(carOwned)) {
+            binding.editText2.error = "REQUIRED"
+            return
+        }
+        if (TextUtils.isEmpty(sacco)) {
+            binding.editText3.error = "REQUIRED"
+            return
+        }
+
+
 
         database = FirebaseDatabase.getInstance().getReference("Userfb")
         val userfb = Userfb(fullName, phoneNumber, carOwned, sacco)
-        database.child(fullName).setValue(userfb).addOnSuccessListener {
+        database.child(uid).setValue(userfb).addOnSuccessListener {
 
             binding.textInputEditText.text?.clear()
             binding.editText.text?.clear()
@@ -73,13 +90,15 @@ class ProfileFeedActivity : AppCompatActivity() {
             binding.editText3.text?.clear()
 
             Toast.makeText(this, "User Information Recorded", Toast.LENGTH_SHORT).show()
+
             startActivity(Intent(this, ReportsActivity::class.java))
         }
             .addOnFailureListener {
 
+                Toast.makeText(this, "User Information Not Recorded", Toast.LENGTH_SHORT).show()
             }
 
-        Toast.makeText(this, "User Information Not Recorded", Toast.LENGTH_SHORT).show()
+
 
     }
 

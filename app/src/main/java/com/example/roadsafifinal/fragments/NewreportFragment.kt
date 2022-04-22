@@ -3,12 +3,11 @@ package com.example.roadsafifinal.fragments
 import android.app.Activity.RESULT_OK
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.media.Image
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,21 +19,23 @@ import com.example.roadsafifinal.R
 import com.example.roadsafifinal.data.fbmodels.Reportfb
 import com.example.roadsafifinal.databinding.FragmentNewreportBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageTask
-import java.util.jar.Manifest
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 
 class NewreportFragment : Fragment() {
 
     private val CAMERA_REQUEST_CODE=2
     private val PICK_IMAGE_REQUEST = 1
-    lateinit var imageUri: Uri
+
 
     //Firebase
-    private lateinit var databaseReference: DatabaseReference
+    private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
+    private lateinit var report: Reportfb
+    private lateinit var uid: String
+    private lateinit var imageUri: Uri
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +43,10 @@ class NewreportFragment : Fragment() {
         val bind = FragmentNewreportBinding.inflate(layoutInflater)
 
 
-       val auth=FirebaseAuth.getInstance()
-        databaseReference=FirebaseDatabase.getInstance().getReference("Reports")
+        database = Firebase.database.reference
+        auth = FirebaseAuth.getInstance()
+        uid = auth.currentUser?.uid.toString()
+
 
 
         val requestCamera=registerForActivityResult(ActivityResultContracts.RequestPermission()) {
@@ -51,6 +54,9 @@ class NewreportFragment : Fragment() {
                 Toast.makeText(activity, "Access Granted", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(activity, "Access Denied", Toast.LENGTH_LONG).show()
+
+                //look at this functionalirty******
+                return@registerForActivityResult
             }
         }
 
@@ -68,13 +74,23 @@ class NewreportFragment : Fragment() {
 
         }
         bind.btnReport.setOnClickListener {
-            //val descrption = bind.etDescription.text.toString()
-          // val location=bind.etLocation.text.toString()
+            val description=bind.descriptionEt.text.toString()
+            val location = bind.locationEt.text.toString()
+            val image=bind.imgReport.imageAlpha
 
-
-            //val Reportfb=Reportfb(descrption,location)
-            //databaseReference.child('uid')
-
+            if (TextUtils.isEmpty(description)){
+                bind.descriptionEt.error="Cannot be blank"
+               return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(location)){
+                bind.locationEt.error="input location"
+                return@setOnClickListener
+            }
+            database=FirebaseDatabase.getInstance().getReference("Reportsfb")
+            val reportfb=Reportfb(description,location, imager = null)
+            database.child(uid).setValue(reportfb).addOnSuccessListener {
+                Toast.makeText(context, "Report Entered Successfully", Toast.LENGTH_SHORT).show()
+            }
 
         }
 
@@ -82,6 +98,7 @@ class NewreportFragment : Fragment() {
 
 
     }
+
 
     private fun pickPhoto() {
         val intent=Intent()
@@ -124,14 +141,6 @@ class NewreportFragment : Fragment() {
     private fun clearFields() {
 
     }
-
-    private fun saveReport() {
-       // ("save report to Room Database")
-
-
-
-    }
-
 
 
             }

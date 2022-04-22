@@ -10,8 +10,8 @@
     <TextView
         android:id="@+id/textView3"
         style="@style/MaterialAlertDialog.MaterialComponents.Title.Icon"
-        android:layout_width="331dp"
-        android:layout_height="43dp"
+        android:layout_width="295dp"
+        android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:fontFamily="serif"
         android:text="Create New Report"
@@ -23,8 +23,8 @@
 
     <LinearLayout
         android:id="@+id/input_description"
-        android:layout_width="392dp"
-        android:layout_height="378dp"
+        android:layout_width="356dp"
+        android:layout_height="374dp"
         android:layout_marginTop="12dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,8 +37,8 @@
             android:layout_height="70dp"
             android:drawableEnd="@drawable/ic_post_foreground"
             android:paddingStart="10dp"
-            android:textColor="@color/greenmode"
             android:text="Report any type of road misconduct here"
+            android:textColor="@color/greenmode"
             android:textSize="25dp" />
 
         <TextView
@@ -52,8 +52,8 @@
 
         <ImageView
             android:id="@+id/img_report"
-            android:layout_width="380dp"
-            android:layout_height="194dp"
+            android:layout_width="340dp"
+            android:layout_height="186dp"
             android:background="@mipmap/photo"
             android:visibility="visible" />
 
@@ -67,16 +67,16 @@
                 android:id="@+id/btn_Capture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/greenmode"
                 android:drawableStart="@drawable/ic_baseline_camera_alt_24"
-                android:text="Camera"
-                android:backgroundTint="@color/greenmode"/>
+                android:text="Camera" />
 
             <Button
                 android:id="@+id/btn_Gallery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_gallery"
                 android:backgroundTint="@color/bluemode"
+                android:drawableStart="@drawable/ic_gallery"
                 android:text="Pick " />
         </LinearLayout>
 
@@ -85,8 +85,8 @@
 
     <LinearLayout
         android:id="@+id/reportinputlayout"
-        android:layout_width="403dp"
-        android:layout_height="146dp"
+        android:layout_width="364dp"
+        android:layout_height="147dp"
         android:layout_marginTop="1dp"
         android:orientation="vertical"
         android:padding="10dp"

@@ -14,6 +14,6 @@ data class Reports (
     @ColumnInfo(name = "r_image") val image: Bitmap?,
     @ColumnInfo(name="shared") val shared: Boolean?,
     @ColumnInfo(name = "r_feedback") val feedback: String?,
-    @ColumnInfo(name = "r_area") val incidentArea: String
+    @ColumnInfo(name = "r_location") val incidentArea: String
 
 )

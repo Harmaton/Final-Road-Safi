@@ -3,6 +3,7 @@
     package="com.example.roadsafifinal">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,15 +16,8 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadSafiFinal">
-        <activity
-            android:name=".activities.ProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.HirepageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.NewreportActivity"
-            android:exported="false" />
+
+
         <activity
             android:name=".activities.ProfileFeedActivity"
             android:exported="false" />
