@@ -60,8 +60,9 @@ dependencies {
 
     implementation 'io.coil-kt:coil:2.0.0-rc03'
     implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
-    def lifecycle_version = "2.5.0-alpha06"
+    def lifecycle_version = "2.5.0-beta01"
     //val arch_version = "2.1.0"
 
     // ViewModel
@@ -81,10 +82,9 @@ dependencies {
     implementation  'de.hdodenhof:circleimageview:3.1.0'
 
     implementation 'com.jpardogo.googleprogressbar:library:1.2.0'
-
-
-
-
+//GLIDE
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

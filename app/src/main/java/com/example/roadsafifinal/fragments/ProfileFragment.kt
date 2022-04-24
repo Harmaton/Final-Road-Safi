@@ -27,7 +27,6 @@ class ProfileFragment : Fragment() {
     private lateinit var databaseReference: DatabaseReference
     //private lateinit var storageReference: StorageReference
    // private lateinit var dialog: Dialog
-    private lateinit var user: Userfb
     private lateinit var uid: String
 
     private var _binding: FragmentProfileBinding? = null
@@ -54,6 +53,7 @@ class ProfileFragment : Fragment() {
             btnlogout.setOnClickListener{ logout() }
 
     }
+
 
     private fun getUser() {
 
@@ -95,9 +95,9 @@ class ProfileFragment : Fragment() {
                      if (users != null) {
                          binding.fullnameTv.setText(users.fullname)
                      }
-                     binding.sacc0Tv.text=users?.saccoName.toString()
-                     binding.carownedTv.text=users?.carOwned.toString()
-                     binding.phoneTv.text=users?.phoneNumber.toString()
+                     binding.sacc0Tv.setText(users?.saccoName)
+                     binding.carownedTv.setText(users?.carOwned)
+                     binding.phoneTv.setText(users?.phoneNumber)
                  }
 
 
@@ -111,18 +111,11 @@ class ProfileFragment : Fragment() {
         databaseReference.child("Userfb").child(uid).addValueEventListener(userListener)
     }
 
-    private fun changedp() {
-
-    }
 
     private fun logout() {
         Firebase.auth.signOut()
         Toast.makeText(context, "Signing out  ... Ciao " , Toast.LENGTH_LONG).show()
         startActivity(Intent(context,LoginActivity::class.java))
-    }
-
-    private fun showProgressbar(){
-
     }
 
     }

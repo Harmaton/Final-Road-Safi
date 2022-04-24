@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import coil.ImageLoader
+import coil.decode.ImageSource
+import com.bumptech.glide.Glide
 import com.example.roadsafifinal.R
 import com.example.roadsafifinal.data.fbmodels.Reportfb
 import com.example.roadsafifinal.databinding.FragmentNewreportBinding
@@ -33,19 +37,21 @@ class NewreportFragment : Fragment() {
     //Firebase
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
-    private lateinit var report: Reportfb
     private lateinit var uid: String
     private lateinit var imageUri: Uri
+    private lateinit var imageurl1: String
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         val bind = FragmentNewreportBinding.inflate(layoutInflater)
 
 
         database = Firebase.database.reference
         auth = FirebaseAuth.getInstance()
         uid = auth.currentUser?.uid.toString()
+        val imageUri=Uri.parse("imageurl")
 
 
 
@@ -76,27 +82,47 @@ class NewreportFragment : Fragment() {
         bind.btnReport.setOnClickListener {
             val description=bind.descriptionEt.text.toString()
             val location = bind.locationEt.text.toString()
-            val image=bind.imgReport.imageAlpha
+            val imageurl = context?.let { it1 -> Glide.with(it1).load(imageUri).into(bind.imgReport) }
 
             if (TextUtils.isEmpty(description)){
-                bind.descriptionEt.error="Cannot be blank"
+              bind.descriptionEt.error=REQUIRED
                return@setOnClickListener
             }
             if (TextUtils.isEmpty(location)){
-                bind.locationEt.error="input location"
+                bind.locationEt.error=REQUIRED
                 return@setOnClickListener
             }
-            database=FirebaseDatabase.getInstance().getReference("Reportsfb")
-            val reportfb=Reportfb(description,location, imager = null)
-            database.child(uid).setValue(reportfb).addOnSuccessListener {
-                Toast.makeText(context, "Report Entered Successfully", Toast.LENGTH_SHORT).show()
+            if(imageurl == null){
+                bind.imgReport.setImageURI(imageUri)
             }
+            database=FirebaseDatabase.getInstance().getReference("Reportsfb")
+            val key=database.child("Reports").push().key
+            if (key == null ){
+                Log.w(TAG, "COULDNT GET PUSH KEY FOR POSTS")
+            }
+
+            val reportfb=Reportfb(description,location, imageurl = null)
+            val reportvalues = reportfb.toMap()
+
+            val childUpdates= hashMapOf<String, Any>(
+                "/Reports/$key" to reportvalues,
+
+                 "/Reporter\"/$key" to reportvalues
+            )
+
+            database.updateChildren(childUpdates)
+           // database.child(uid).setValue(reportfb).addOnSuccessListener {
+                Toast.makeText(context, "Report Entered Successfully", Toast.LENGTH_SHORT).show()
+
+                bind.descriptionEt.text?.clear()
+                bind.locationEt.text?.clear()
+
+
+          //  }
 
         }
 
         return bind.root
-
-
     }
 
 
@@ -115,33 +141,41 @@ class NewreportFragment : Fragment() {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null ){
 
             imageUri = data.data!!
-            img?.setImageURI(imageUri)
+
+           // load to view
+            context?.let {
+                if (img != null) {
+                    Glide.with(it).load(imageUri).into(img)
+                }
+
+
+            }
             Toast.makeText( activity,"Image selected Successfully", Toast.LENGTH_LONG).show()
 
         }
         else if(requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK && data != null){
             val bmp: Bitmap= data.extras?.get("data") as Bitmap
-            img?.setImageBitmap(bmp)
-            Toast.makeText( activity,"Photo Captured Successfully", Toast.LENGTH_LONG).show()
+            //img?.setImageBitmap(bmp)
+            context?.let {
+                if (img != null) {
+                   val imageUri= img
+                    Glide.with(it).load(bmp).into(img) to imageUri
+
+                    Toast.makeText( activity,"Photo Captured Successfully", Toast.LENGTH_LONG).show()
+                }
+            }
+
         }
         else{
             Toast.makeText( activity,"Error Loading Image", Toast.LENGTH_LONG).show()
         }
     }
 
-
-    private fun validateInput() {
-        //validation for report input on submit")
-
+    companion object {
+        private const val TAG = "NewPostFragment"
+        private const val REQUIRED = "Required"
     }
 
 
-
-
-    private fun clearFields() {
-
-    }
-
-
-            }
+}
 

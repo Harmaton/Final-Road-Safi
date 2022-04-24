@@ -10,27 +10,28 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="Reports"
-        android:paddingStart="10dp"
-
-        android:textStyle="italic"
         android:layout_marginBottom="3dp"
+        android:backgroundTint="@color/greenmode"
+        android:paddingStart="10dp"
+        android:text="Reports"
+        android:textSize="30dp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:id="@+id/reportRecycler"
+        android:layout_width="412dp"
+        android:layout_height="540dp"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:listitem="@layout/report_item"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/report_item" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

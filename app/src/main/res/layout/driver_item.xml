@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/graybackground"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="3dp"
+    android:padding="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+
+        <ImageView
+            android:id="@+id/driverImage"
+            android:layout_marginTop="15dp"
+            android:layout_width="92dp"
+            android:layout_height="104dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_baseline_person_pin_24" />
+
+        <TextView
+            android:id="@+id/driverName"
+            android:layout_width="133dp"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_toRightOf="@id/driverImage"
+            android:paddingStart="15dp"
+            android:text="name"
+            android:textColor="@color/greenmode"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="149dp"
+            android:id="@+id/car"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/driverName"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginEnd="157dp"
+            android:layout_marginBottom="-33dp"
+            android:layout_toRightOf="@id/driverImage"
+            android:paddingStart="15dp"
+            android:text="car in transit"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/car"
+            android:layout_marginLeft="1dp"
+            android:id="@+id/rate_tv"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="-33dp"
+            android:layout_toRightOf="@id/driverImage"
+            android:drawableStart="@drawable/ic_baseline_star_rate_24"
+            android:drawablePadding="10dp"
+            android:paddingStart="15dp"
+            android:text="Rates"
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/call_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/car"
+            android:layout_marginLeft="41dp"
+            android:layout_marginBottom="-18dp"
+            android:layout_toRightOf="@id/driverName"
+            android:background="@drawable/select_shape"
+            android:drawableStart="@drawable/ic_baseline_call_24"
+            android:text="hire" />
+
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

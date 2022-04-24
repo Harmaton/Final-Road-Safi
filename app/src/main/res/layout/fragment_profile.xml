@@ -12,8 +12,9 @@
         android:layout_width="331dp"
         android:layout_height="146dp"
 
+        android:background="@color/greenmode"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/bluemode"
+        android:backgroundTint="@color/greenmode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -102,7 +103,7 @@
         android:layout_width="86dp"
         android:layout_height="48dp"
         android:background="@drawable/input_background"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/greenmode"
         android:text="log out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

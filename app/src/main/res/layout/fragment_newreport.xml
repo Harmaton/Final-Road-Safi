@@ -37,7 +37,7 @@
             android:layout_height="70dp"
             android:drawableEnd="@drawable/ic_post_foreground"
             android:paddingStart="10dp"
-            android:text="Report any type of road misconduct here"
+            android:text="Report any form of road misconduct"
             android:textColor="@color/greenmode"
             android:textSize="25dp" />
 
@@ -52,14 +52,16 @@
 
         <ImageView
             android:id="@+id/img_report"
-            android:layout_width="340dp"
-            android:layout_height="186dp"
-            android:background="@mipmap/photo"
+            android:layout_width="367dp"
+            android:layout_height="173dp"
+            android:src="@drawable/ic_baseline_camera_24"
+            android:saveEnabled="false"
             android:visibility="visible" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
+            android:dividerPadding="20dp"
             android:orientation="horizontal"
             android:padding="10dp">
 
@@ -67,14 +69,16 @@
                 android:id="@+id/btn_Capture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/select_shape"
                 android:backgroundTint="@color/greenmode"
                 android:drawableStart="@drawable/ic_baseline_camera_alt_24"
                 android:text="Camera" />
 
             <Button
                 android:id="@+id/btn_Gallery"
-                android:layout_width="wrap_content"
+                android:layout_width="98dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/select_shape"
                 android:backgroundTint="@color/bluemode"
                 android:drawableStart="@drawable/ic_gallery"
                 android:text="Pick " />
@@ -89,7 +93,9 @@
         android:layout_height="147dp"
         android:layout_marginTop="1dp"
         android:orientation="vertical"
+        android:dividerPadding="10dp"
         android:padding="10dp"
+        android:background="@color/graybackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
