@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Toast
+import androidx.compose.ui.window.Dialog
 import com.example.roadsafifinal.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 

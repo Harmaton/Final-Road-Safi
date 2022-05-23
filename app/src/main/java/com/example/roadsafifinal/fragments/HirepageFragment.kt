@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.roadsafifinal.R
 
 
@@ -17,8 +18,12 @@ class HirepageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hirepage, container, false)
+        val view = inflater.inflate(R.layout.fragment_hirepage, container, false)
+        view.findViewById<RecyclerView>(R.id.driver_Recycler)
+
+
+        return view
+
     }
 
 }

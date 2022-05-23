@@ -6,12 +6,16 @@ import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.roadsafifinal.R
 import com.example.roadsafifinal.data.fbmodels.Reportfb
 
-class ReportAdapter(private val reportList: ArrayList<Reportfb>): RecyclerView.Adapter<ReportAdapter.myViewholder>() {
+class ReportAdapter(private var reportList: ArrayList<Reportfb>): RecyclerView.Adapter<ReportAdapter.myViewholder>() {
+
+
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewholder {
@@ -25,7 +29,7 @@ class ReportAdapter(private val reportList: ArrayList<Reportfb>): RecyclerView.A
         val reportfb = reportList[position]
         holder.description.text=reportfb.description
         holder.location.text=reportfb.location
-        holder.imageurl= reportfb.imageurl!!
+        Glide.with(holder.itemView).load(reportfb.imageurl?.toUri()).into(holder.imageurl)
 
     }
 

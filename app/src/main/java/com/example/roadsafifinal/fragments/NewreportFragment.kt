@@ -16,8 +16,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import coil.ImageLoader
-import coil.decode.ImageSource
 import com.bumptech.glide.Glide
 import com.example.roadsafifinal.R
 import com.example.roadsafifinal.data.fbmodels.Reportfb
@@ -26,20 +24,24 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 
 class NewreportFragment : Fragment() {
 
-    private val CAMERA_REQUEST_CODE=2
+    private val CAMERA_REQUEST_CODE = 2
     private val PICK_IMAGE_REQUEST = 1
 
 
     //Firebase
     private lateinit var database: DatabaseReference
+    private lateinit var storage: FirebaseStorage
+    private lateinit var storageReference: StorageReference
     private lateinit var auth: FirebaseAuth
     private lateinit var uid: String
     private lateinit var imageUri: Uri
-    private lateinit var imageurl1: String
+
 
 
 
@@ -49,9 +51,10 @@ class NewreportFragment : Fragment() {
 
 
         database = Firebase.database.reference
+        storageReference =FirebaseStorage.getInstance().getReference("ReportImages")
         auth = FirebaseAuth.getInstance()
         uid = auth.currentUser?.uid.toString()
-        val imageUri=Uri.parse("imageurl")
+
 
 
 
@@ -82,7 +85,8 @@ class NewreportFragment : Fragment() {
         bind.btnReport.setOnClickListener {
             val description=bind.descriptionEt.text.toString()
             val location = bind.locationEt.text.toString()
-            val imageurl = context?.let { it1 -> Glide.with(it1).load(imageUri).into(bind.imgReport) }
+                // val imagename=bind.imgReport.toString()
+           // val imageN = context?.let { it1 -> Glide.with(it1).load(imageUri).into(bind.imgReport) }
 
             if (TextUtils.isEmpty(description)){
               bind.descriptionEt.error=REQUIRED
@@ -92,63 +96,53 @@ class NewreportFragment : Fragment() {
                 bind.locationEt.error=REQUIRED
                 return@setOnClickListener
             }
-            if(imageurl == null){
-                bind.imgReport.setImageURI(imageUri)
+
+            val imagename= storageReference.child("reportimages" + imageUri.lastPathSegment)
+            imagename.putFile(imageUri).addOnSuccessListener {
+                imagename.downloadUrl.addOnSuccessListener {
+                    val hasmMap: HashMap<String, String> = HashMap()
+                    hasmMap["imageurl"] = imageUri.toString()
+                    //database.setValue(hasmMap)
+                }
             }
             database=FirebaseDatabase.getInstance().getReference("Reportsfb")
             val key=database.child("Reports").push().key
             if (key == null ){
                 Log.w(TAG, "COULDNT GET PUSH KEY FOR POSTS")
             }
-
-            val reportfb=Reportfb(description,location, imageurl = null)
+            val reportfb=Reportfb(description,location, imagename.toString())
             val reportvalues = reportfb.toMap()
 
             val childUpdates= hashMapOf<String, Any>(
                 "/Reports/$key" to reportvalues,
-
-                 "/Reporter\"/$key" to reportvalues
+                 "/Reporter/$key" to reportvalues
             )
-
             database.updateChildren(childUpdates)
-           // database.child(uid).setValue(reportfb).addOnSuccessListener {
                 Toast.makeText(context, "Report Entered Successfully", Toast.LENGTH_SHORT).show()
-
                 bind.descriptionEt.text?.clear()
                 bind.locationEt.text?.clear()
+                bind.imgReport.setImageURI(null)
 
-
-          //  }
 
         }
-
         return bind.root
     }
-
-
     private fun pickPhoto() {
         val intent=Intent()
         intent.type="image/*"
         intent.action=Intent.ACTION_GET_CONTENT
-
         startActivityForResult(intent,PICK_IMAGE_REQUEST)
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         val img= view?.findViewById<ImageView>(R.id.img_report)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null ){
-
             imageUri = data.data!!
-
            // load to view
             context?.let {
                 if (img != null) {
                     Glide.with(it).load(imageUri).into(img)
                 }
-
-
             }
             Toast.makeText( activity,"Image selected Successfully", Toast.LENGTH_LONG).show()
 
@@ -164,7 +158,6 @@ class NewreportFragment : Fragment() {
                     Toast.makeText( activity,"Photo Captured Successfully", Toast.LENGTH_LONG).show()
                 }
             }
-
         }
         else{
             Toast.makeText( activity,"Error Loading Image", Toast.LENGTH_LONG).show()

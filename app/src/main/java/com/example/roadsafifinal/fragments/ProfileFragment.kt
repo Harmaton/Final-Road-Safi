@@ -1,14 +1,19 @@
 package com.example.roadsafifinal.fragments
 
 //import android.app.Dialog
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.example.roadsafifinal.R
 import com.example.roadsafifinal.activities.LoginActivity
 import com.example.roadsafifinal.data.fbmodels.Userfb
 import com.example.roadsafifinal.databinding.FragmentProfileBinding
@@ -18,6 +23,8 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 //import com.google.firebase.storage.StorageReference
 
@@ -25,9 +32,10 @@ class ProfileFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
-    //private lateinit var storageReference: StorageReference
+    private lateinit var storageReference: StorageReference
    // private lateinit var dialog: Dialog
     private lateinit var uid: String
+    private lateinit var imageUri: Uri
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
@@ -48,12 +56,52 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
             getUser()
-        // Initialize Views
+
+        storageReference =FirebaseStorage.getInstance().getReference("userdp")
+
             val btnlogout = binding.btnLogout
             btnlogout.setOnClickListener{ logout() }
 
+        val dp=binding.picProfile
+        dp.setOnClickListener {
+            picProfile()
+        }
+
+       val imageref = storageReference.child("userdp/").downloadUrl
+        imageref.addOnSuccessListener{
+            activity?.let { Glide.with(it).load(imageref).into(dp) }
+
+        }
+        }
+
+
+    private fun picProfile() {
+            val intent=Intent()
+            intent.type="image/*"
+            intent.action=Intent.ACTION_GET_CONTENT
+            startActivityForResult(intent,9)
+
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val img= view?.findViewById<ImageView>(R.id.pic_profile)
+        if (requestCode == 9 && resultCode == Activity.RESULT_OK && data != null ){
+          val  imageUri = data.data!!
+
+            // load to view
+            context?.let {
+                if (img != null) {
+                    Glide.with(it).load(imageUri).into(img)
+                }
+                //soreImage
+                 storageReference.child("userdp")
+                     .putFile(imageUri)
+            }
+            Toast.makeText( activity,"Image selected Successfully", Toast.LENGTH_LONG).show()
+
+        }
+    }
 
     private fun getUser() {
 

@@ -11,6 +11,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keepattributes Signature
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
@@ -19,3 +20,5 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keepclassmembers class com.example.roadsafifinal.models.** {
+  *;}

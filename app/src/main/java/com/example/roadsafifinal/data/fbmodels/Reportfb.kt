@@ -10,7 +10,7 @@ import java.io.File
 @IgnoreExtraProperties
 data class Reportfb(
     var description: String?, var location: String?,
-    var imageurl: ImageView?
+    var imageurl: String?
 ){
 
     @Exclude
